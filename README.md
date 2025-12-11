@@ -3,8 +3,7 @@
 This repository contains the source code for my personal portfolio website. It is designed to showcase my journey as a **Software Developer** and **Data Scientist**, highlighting my projects, professional experience, and education.
 
 ## 🚀 Live Demo
-[**Click here to view my Portfolio**](https://omdoshi13.github.io/my-portfolio/)
-*(Note: Replace 'my-portfolio' in the link above with your actual repository name if it is different)*
+[**Click here to view my Portfolio**](https://omdoshi13.github.io/Personal-Portfolio/)
 
 ## 👨‍💻 About Me
 I am an **MSc Data Science Graduate from University College Cork** with a background in Computer Engineering (B.Tech). I specialize in building scalable software and intelligent data solutions, bridging the gap between complex algorithms and intuitive user experiences.
@@ -38,7 +37,7 @@ This portfolio links to several of my key projects hosted on GitHub:
 ## 🚀 How to Run Locally
 1.  Clone this repository:
     ```bash
-    git clone [https://github.com/OmDoshi13/my-portfolio.git](https://github.com/OmDoshi13/my-portfolio.git)
+    git clone [https://github.com/OmDoshi13/Personal-Portfolio.git](https://github.com/OmDoshi13/Personal-Portfolio.git)
     ```
 2.  Navigate to the project folder.
 3.  Open `index.html` in your browser.
