@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Doshi | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES --- */
+        
+         :root {
+            --primary: #FFD700;
+            /* Professional Gold/Yellow */
+            --dark: #111111;
+            --dark-lighter: #1a1a1a;
+            --light: #F9F9F9;
+            --text-gray: #aaa;
+            --white: #ffffff;
+            --nav-height: 80px;
+        }
+        /* --- RESET & BASIC SETUP --- */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+        
+        img {
+            display: block;
+            max-width: 100%;
+        }
+        /* --- ANIMATIONS --- */
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* --- NAVIGATION --- */
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(17, 17, 17, 0.95);
+            /* Slight transparency */
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        .nav-links a:not(.resume-btn)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: 0.3s;
+        }
+        
+        .nav-links a:not(.resume-btn):hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        /* Resume Button Style */
+        
+        .resume-btn {
+            border: 2px solid var(--primary);
+            padding: 8px 20px !important;
+            color: var(--primary) !important;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .resume-btn:hover {
+            background: var(--primary);
+            color: var(--dark) !important;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+        /* --- HERO SECTION (IMPROVED) --- */
+        
+        .hero {
+            display: flex;
+            min-height: 100vh;
+            padding-top: var(--nav-height);
+            background-color: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Hero Left Side */
+        
+        .hero-text {
+            width: 55%;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-lighter) 100%);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5% 0 10%;
+            position: relative;
+            z-index: 2;
+        }
+        /* Decorative Dot Pattern */
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+        
+        .hero-label {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-label::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        /* Typewriter Effect Text */
+        
+        .typewriter {
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 30px;
+            height: 30px;
+        }
+        
+        .type-text {
+            color: var(--primary);
+            border-right: 2px solid var(--primary);
+            padding-right: 5px;
+            animation: blink 0.7s infinite;
+        }
+        
+        .hero p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--primary);
+            color: var(--dark);
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 5px 5px 0px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            box-shadow: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 8px 8px 0px rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--dark);
+            border-color: var(--white);
+        }
+        /* Floating Socials */
+        
+        .hero-socials {
+            position: absolute;
+            left: 40px;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .hero-socials::before {
+            content: '';
+            width: 2px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-socials a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        
+        .hero-socials a:hover {
+            color: var(--primary);
+            transform: scale(1.2);
+        }
+        /* Hero Right Side (Image with Frame) */
+        
+        .hero-img-wrapper {
+            width: 45%;
+            background: #e5e5e5;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero-img-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+        
+        .hero-img-box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .hero-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .hero-img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+        /* Scroll Down Indicator */
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+        
+        .mouse {
+            width: 26px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .mouse::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: scroll-wheel 2s infinite;
+        }
+        /* --- SECTIONS --- */
+        
+        section {
+            padding: 120px 8%;
+        }
+        
+        .section-header {
+            margin-bottom: 70px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: -10px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            z-index: -1;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        /* --- ABOUT --- */
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat h3 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0;
+            line-height: 1;
+        }
+        
+        .stat p {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-gray);
+            margin-top: 10px;
+        }
+        /* --- EDUCATION --- */
+        
+        .alternate-bg {
+            background-color: var(--light);
+        }
+        
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .edu-item {
+            position: relative;
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+            top: 0;
+        }
+        
+        .edu-item:hover {
+            top: -10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .edu-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .edu-info {
+            padding: 30px;
+            border-bottom: 4px solid var(--primary);
+        }
+        
+        .edu-school {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .edu-degree {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        
+        .grad-badge {
+            display: inline-block;
+            background: var(--dark);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        /* --- EXPERIENCE --- */
+        
+        .job-card {
+            background: var(--white);
+            padding: 45px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+        
+        .job-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .job-role {
+            font-size: 1.6rem;
+            color: var(--dark);
+            font-weight: 800;
+        }
+        
+        .job-company {
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 600;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .job-date {
+            background: var(--white);
+            color: var(--dark);
+            padding: 8px 25px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            box-shadow: 4px 4px 0 var(--primary);
+        }
+        
+        .job-card ul {
+            list-style: none;
+        }
+        
+        .job-card li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.7;
+            color: #444;
+        }
+        
+        .job-card li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+        /* --- PROJECTS --- */
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: var(--dark);
+            color: var(--white);
+            height: 400px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #222;
+        }
+        /* Hover Effect: Yellow Glow */
+        
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
+        }
+        
+        .p-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .p-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .p-desc {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .p-tech {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .p-tag {
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        /* --- FOOTER --- */
+        
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+            border-top: 5px solid var(--primary);
+        }
+        
+        .socials {
+            margin-top: 30px;
+        }
+        
+        .socials a {
+            font-size: 2rem;
+            color: var(--white);
+            margin: 0 20px;
+            transition: 0.3s;
+        }
+        
+        .socials a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        /* --- KEYFRAMES --- */
+        
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+        
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+        
+        @keyframes scroll-wheel {
+            0% {
+                top: 8px;
+                opacity: 1;
+            }
+            100% {
+                top: 18px;
+                opacity: 0;
+            }
+        }
+        /* --- MOBILE --- */
+        
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                height: auto;
+            }
+            .hero-text {
+                width: 100%;
+                padding: 100px 20px 60px;
+                min-height: auto;
+            }
+            .hero-img-wrapper {
+                width: 100%;
+                height: 50vh;
+            }
+            .hero-socials {
+                display: none;
+            }
+            /* Hide side socials on mobile */
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            /* Simplified mobile handling */
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">OM DOSHI.</div>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT ME</a>
+            <a href="#education">EDUCATION</a>
+            <a href="#experience">EXPERIENCE</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="https://drive.google.com/file/d/1dOY5yHbdYeaLBXKlegNlRprurpJG9LiQ/view?usp=sharing" target="_blank" class="resume-btn">RESUME <i class="fas fa-download"></i></a>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-text reveal">
+            <div class="hero-pattern"></div>
+
+            <div class="hero-label">SOFTWARE DEVELOPER & DATA SCIENTIST</div>
+
+            <h1>HELLO,<br>I AM OM DOSHI.</h1>
+
+            <div class="typewriter">I build <span class="type-text"></span></div>
+
+            <p>
+                I build scalable software and intelligent data solutions. With a strong background in Python, C++, and React.js, I turn complex problems into elegant, efficient code.
+            </p>
+
+            <div class="btn-group">
+                <a href="#projects" class="btn">VIEW PROJECTS</a>
+                <a href="https://drive.google.com/file/d/1dOY5yHbdYeaLBXKlegNlRprurpJG9LiQ/view?usp=sharing" target="_blank" class="btn btn-outline">RESUME</a>
+            </div>
+
+            <div class="hero-socials">
+                <a href="https://github.com/OmDoshi13" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/omdoshii" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:omdoshi2@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+
+        <div class="hero-img-wrapper reveal">
+            <div class="hero-img-box">
+                <img src="profile.jpg" alt="Om Doshi Animated">
+            </div>
+        </div>
+
+        <div class="scroll-down">
+            <div class="mouse"></div>
+            <span>SCROLL</span>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="section-header reveal">
+            <h2>WHO AM I?</h2>
+        </div>
+        <div class="about-grid reveal">
+            <div>
+                <h3 style="margin-bottom: 25px; font-size: 2rem; color: var(--dark);">DRIVEN BY IMPACT.</h3>
+                <p style="color: #666; margin-bottom: 20px; font-size: 1.1rem; line-height: 1.8;">
+                    I am a results-oriented developer and an <b>MSc Data Science Graduate from UCC</b>. I don't just write code; I build solutions that improve business metrics. My work is defined by efficiency, scalability, and user-centric design.
+                </p>
+                <p style="color: #666; font-size: 1.1rem; line-height: 1.8;">
+                    Whether it's optimizing backend queries to shave seconds off load times or designing algorithms that predict user behavior, I love the challenge of making things better.
+                </p>
+            </div>
+            <div class="about-stats">
+                <div class="stat">
+                    <h3>30%</h3>
+                    <p>SALES INCREASE<br>VIA ALGORITHMS</p>
+                </div>
+                <div class="stat">
+                    <h3>20%</h3>
+                    <p>FASTER<br>PAGE LOADS</p>
+                </div>
+                <div class="stat">
+                    <h3>25%</h3>
+                    <p>DB QUERY<br>OPTIMIZATION</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="alternate-bg">
+        <div class="section-header reveal">
+            <h2>EDUCATION</h2>
+        </div>
+        <div class="edu-grid reveal">
+            <div class="edu-item">
+                <img src="ucc.jpg" alt="University College Cork" class="edu-img">
+                <div class="edu-info">
+                    <h3 class="edu-school">University College Cork <span class="grad-badge">GRADUATED 2025</span></h3>
+                    <p class="edu-degree">MSc Data Science & Analytics</p>
+                    <p style="color: #777; font-size: 0.9rem; margin-top: 10px;"><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> Cork, Ireland</p>
+                </div>
+            </div>
+            <div class="edu-item">
+                <img src="kjsce.jpg" alt="KJ Somaiya College" class="edu-img">
+                <div class="edu-info">
+                    <h3 class="edu-school">K.J. Somaiya College of Engineering <span class="grad-badge">GRADUATED 2024</span></h3>
+                    <p class="edu-degree">B.Tech Computer Engineering</p>
+                    <p style="color: #777; font-size: 0.9rem; margin-top: 10px;"><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> Mumbai, India | CGPA: 9.10/10</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-header reveal">
+            <h2>WORK EXPERIENCE</h2>
+        </div>
+
+        <div class="job-card reveal">
+            <div class="job-header">
+                <div>
+                    <h3 class="job-role">Software Developer Intern</h3>
+                    <span class="job-company">Travoaffiars Pvt Ltd | Mumbai</span>
+                </div>
+                <span class="job-date">Aug 2023 - Aug 2024</span>
+            </div>
+            <ul>
+                <li>Optimized prediction algorithms, directly contributing to a <b>30% increase in website sales</b>.</li>
+                <li>Enhanced website interactivity using JavaScript & React.js, reducing page load time by <b>20%</b>.</li>
+                <li>Streamlined MySQL database queries with Node.js, improving data retrieval speed by <b>25%</b>.</li>
+                <li>Ensured 100% cross-platform compatibility for responsive web applications.</li>
+            </ul>
+        </div>
+
+        <div class="job-card reveal">
+            <div class="job-header">
+                <div>
+                    <h3 class="job-role">Data Analyst Intern</h3>
+                    <span class="job-company">Pickright Technologies | Mumbai</span>
+                </div>
+                <span class="job-date">Sept 2021 - Nov 2021</span>
+            </div>
+            <ul>
+                <li>Analyzed large-scale datasets using Python & R, improving team efficiency by <b>30%</b>.</li>
+                <li>Automated data extraction from legacy systems using SQL and Perl scripts.</li>
+                <li>Designed data visualization dashboards in Tableau & Power BI for key insights.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="alternate-bg">
+        <div class="section-header reveal">
+            <h2>FEATURED PROJECTS</h2>
+        </div>
+        <div class="project-grid reveal">
+
+            <a href="https://github.com/OmDoshi13/travel-website" target="_blank" class="project-card">
+                <i class="fas fa-plane p-icon"></i>
+                <h3 class="p-title">Responsive Travel Platform</h3>
+                <p class="p-desc">Dynamic travel website with real-time data processing and performance optimizations for personalized recommendations.</p>
+                <div class="p-tech">
+                    <span class="p-tag">Python</span><span class="p-tag">JS</span><span class="p-tag">HTML5</span>
+                </div>
+            </a>
+
+            <a href="https://github.com/OmDoshi13/personal-portfolio" target="_blank" class="project-card">
+                <i class="fas fa-code p-icon"></i>
+                <h3 class="p-title">Personal Portfolio</h3>
+                <p class="p-desc">High-performance portfolio website featuring clean UI, smooth navigation, and optimized CSS architecture.</p>
+                <div class="p-tech">
+                    <span class="p-tag">VS Code</span><span class="p-tag">CSS3</span><span class="p-tag">JS</span>
+                </div>
+            </a>
+
+            <a href="https://github.com/OmDoshi13/Crime-Data-Analysis-and-Neural-Network-Model" target="_blank" class="project-card">
+                <i class="fas fa-brain p-icon"></i>
+                <h3 class="p-title">Crime Data & Neural Networks</h3>
+                <p class="p-desc">Neural network model designed to analyze crime patterns and predict future trends based on historical data.</p>
+                <div class="p-tech">
+                    <span class="p-tag">Neural Networks</span><span class="p-tag">Python</span><span class="p-tag">Pandas</span>
+                </div>
+            </a>
+
+            <a href="https://github.com/OmDoshi13/Prediction-for-Customer-Lifetime-Value" target="_blank" class="project-card">
+                <i class="fas fa-chart-pie p-icon"></i>
+                <h3 class="p-title">Customer Lifetime Value</h3>
+                <p class="p-desc">Predictive model to estimate the total revenue a business can expect from a single customer account.</p>
+                <div class="p-tech">
+                    <span class="p-tag">ML</span><span class="p-tag">Analytics</span><span class="p-tag">Python</span>
+                </div>
+            </a>
+
+            <a href="https://github.com/OmDoshi13/Plagiarism-Checker" target="_blank" class="project-card">
+                <i class="fas fa-search p-icon"></i>
+                <h3 class="p-title">Plagiarism Checker</h3>
+                <p class="p-desc">A tool to detect text similarity and identify potential plagiarism in documents using NLP techniques.</p>
+                <div class="p-tech">
+                    <span class="p-tag">NLP</span><span class="p-tag">Python</span><span class="p-tag">Algorithms</span>
+                </div>
+            </a>
+
+            <a href="https://github.com/OmDoshi13/Pricing-of-Laptops-Using-ML" target="_blank" class="project-card">
+                <i class="fas fa-laptop p-icon"></i>
+                <h3 class="p-title">Laptop Price Predictor</h3>
+                <p class="p-desc">Machine learning regression model to estimate laptop prices based on technical specifications.</p>
+                <div class="p-tech">
+                    <span class="p-tag">Regression</span><span class="p-tag">Scikit-Learn</span><span class="p-tag">ML</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer>
+        <h2>LET'S CONNECT</h2>
+        <p style="margin-top: 20px; color: #aaa;">omdoshi2@gmail.com | +353 (89) 201 1988</p>
+        <div class="socials">
+            <a href="https://github.com/OmDoshi13" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/omdoshii" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:omdoshi2@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="font-size: 0.7rem; margin-top: 50px; opacity: 0.3;">&copy; 2025 Om Doshi. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // TYPEWRITER EFFECT
+        const textElement = document.querySelector('.type-text');
+        const phrases = ["Scalable Software.", "Data Solutions.", "AI Models."];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                setTimeout(type, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 100 : 200);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', type);
+
+        // SCROLL REVEAL
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal();
+    </script>
+
+</body>
+
+</html>
